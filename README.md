@@ -1,103 +1,60 @@
-# Shopper-Retention
+# Online Shopper Purchasing Intention
+A local E-Groceries named Lauk-Fresh has a problem in terms of the low conversion rate of platform visitors. As a data science team, we were asked to analyze the factors that can affect the increase in conversion rates and create a predictive model so that we can treat visitors according to the model predictions.
 
-# *Data Science Project*
-Online Shopper Intention
+This project aims to increase conversion rate by 20% and increase gross profit by 15%. The data we use is data from the last 1 year which records the activities of all visitors using our platform.
 
-
-# Goal
-Increase conversion rate using predictive model
-
-# Objective
-To get more information and analyze the factors influencing conversion rate increase
-Predict whether visitors will convert or not, so that the business team can provide special treatment that is more segmented to each user.
-
-# Stage 1: Exploratory Data Analysis <br>
-<br>
-<br>
-<br>
-<h2> Descriptive Analysis: </h2> <br>
-<ol>
-<li> There are no invalid entries for each feature.</li>
-<li>`Administrative_Duration`, `Informational_Duration`, `ProductRelated`, `ProductRelated_Duration`, and `PageValues` features seem to have right skew distribution.</li>
-<li>Some features seem to have extreme outlier values.</li>
-</ol>
- 
-  
-<h2> Categorical Analysis: </h2>
-<ol>
-<li>`Month` column is dominated by these value: `Mar`, `May`, `Nov`, dan `Dec` and probably it will be converted by label encoding</li>
-<li>`OperatingSystems` column is dominated by these value: `Android 11`,`Android 9 and Older Ver`, and `Win 0` --> dominant value will be remain as before and the rest will be converted into `Others` Value</li>
-<li>`Browser` column is dominated by `Chrome Desktop`, `Chrome Mobile`, `Firefox Desktop`, and `Samsung Internet`  --> dominant value will be remain as before and the rest will be converted into `Others` Value </li>
-<li>`Region` column is dominated by oleh `Tangerang Selatan`, `Jakarta`, `Bekasi` and `Tangerang` also `Bandung`,`Semarang`, and `Surabaya` will be converted into 1 value `Luar Jabodetabek` </li>
-<li>`TrafficType` is dominated by `Google.com`, `Direct Visit`, `Youtube.com`, etc --> Dominant value will be remain as before and the rest will be converted as `Others`</li>
-<li>`VisitorType` column `returning_visitor` dan `new visitor` --> `others` column will be converted into most dominant value (`returning_visitor`) and also we will use label (1,0) to Encode this column </li>
-<li>`Weekend` and target column `Purchase` is boolean --> it will be converted into integer boolean 1,0 </li>
- </ol>
+The result of this project is that we managed to `increase our conversion rate` by **30.40%** and also `increase our gross profit` by **95%**. We have also analyzed the `most important factors affecting conversion rate` with their respective correlations. We also provide rational and achieveable `recommendations that can be applied by the relevant team` so that the conversion rate and gross profit of the company can increase.
 
 
+# Project Background
+This pandemic has had a positive impact on companies, shopping at E-Groceries is starting to become a new trend. Based on data from contentsquare, the conversion rate for E-Groceries companies increased by around 36% (2020 vs 2021). This provides great potential for Lauk-Fresh to increase its conversion rate
+
+Currently Lauk Fresh's conversion rate is 15.63%. Our goal is to increase conversion rate by 20% and increase gross profit by 15%. This can be achieved by knowing the factors that can affect the increment of the conversion rates and implementing our recommendations in business processes.
+
+# Dataset Overview
+Our data consist of 12330 session, which are generated from our user activity on platform. There are 17 independent features and 1 target feature. Our target feature explain whether the visitor will purchase or not. 
+
+# Pre Processing
+1. Handling Duplicate
+2. Feature Encoding
+3. Feature Transformation
+4. Handling Outlier
+5. Feature Selection 
+6. Handling Imbalanced Target
+
+# Modeling
+**We use 10 types of algorithm:**
+
+1. Logistic Regression
+2. KNeighborsClassifier
+3. GaussianNB
+4. SVC
+5. Decission Tree Classifier
+6. Random Forest
+7. Ada Boosting Classifier
+8. Gradient Boosting Classifeir
+9. LGBM Classifier
+10. XGB Classifier
 
 
+**Scoring:**
 
+We use F2 score to prevent many false prediction of negative label (False Negative). After hyperparameter tuning, after completing several experiment, LGBM Classifier gave the best F2 score for Train and Test score.
 
+**Result :**
+1. F2 Train Score : 90%
+2. F2 Test Score: 94%
 
-# Stage 2: Pre Processing
-<ol>
-<li> Handling Duplicate </li>
-125 Duplicated data has been dropped <br>
-<br>
-<li> Handling Outlier </li>
-Using Zscore method to handling outlier <br>
-<br>
-<li> Drop Unused Feature </li>
-PageValues and Specialday will be dropped <br>
-<br>
-<li> Values Feature Grouping  </li>
-Cateorical values that has many unique values, the indominant values will be grouped into ‘others’ values <br>
-<br>
-<li> Data Type Transformation </li>
-Transform boolean into integer values <br>
-<br>
-<li> Feature Encoding </li>
-Using OHE to encode categorical vaues<br>
-<br>
-<li> Feature Selection </li>
-Using 5 method to select the best features <br>
-<br>
-<li> Feature Transformation  </li>
-Using logtranformation and MinMaxScaler <br>
-<br>
-<li> Handling Imbalance Target </li>
-Using SMOTE with default sampling strategy (50:50) <br>
-</ol>
+**Top 4 Feature Importance:**
+1. ExitRates
+2. Administrative
+3. ProductRelated_Duration
+4. ProductRelated
 
-
-
-# Stage 3: Modeling
-<h2> We use 10 types of algorithm: </h2>
-<ol>
-<li>Logistic Regression </li>
-<li>KNeighborsClassifier </li>
-<li>GaussianNB </li>
-<li>SVC </li>
-<li>Decission Tree Classifier </li>
-<li>Random Forest </li>
-<li>Ada Boosting Classifier </li>
-<li>Gradient Boosting Classifeir </li>
-<li>LGBM Classifier <br>
-<li>XGB Classifier </li>
-</ol>
-
-
-<h2> Scoring </h2>
-We use F2 score to prevent many false prediction of negative label (False Negative). After hyperparameter tuning, after completing several experiment, LGBM Classifier gave the best F2 score for Train and Test score. <br>
-
-<h2> Result </h2>
-F2 Train Score : 90% <br>  
-F2 Test Score: 94% <br>
-<br>
-
-<h2> Feature Importance: </h2>
-ExitRates <br>
-Administrative <br>
-ProductRelated_Duration <br>
-ProductRelated <br>
+# Recommendation:
+1. Discount Offering to Real-Time Non-Purchase Predicted Visitors
+2. Decrease 15% Exit Rates
+3. Increase 5% Administrative
+4. Increase 5% Product Related Duration
+5. Decrease 10% Product Related
+With implement all of this recommendations, Lauk Fresh has the potential to `increase conversion rate` up to **30.40%** and `increase gross profit` by **95%**
